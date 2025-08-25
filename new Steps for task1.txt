@@ -1,0 +1,69 @@
+Download this whole folder somewhere on your computer (keep the structure as shown).
+
+Start the little server:
+
+Open a terminal(win+R --> type cmd --> enter):
+
+cd ws-dom-controller/server
+npm install
+npm start
+
+
+You should see:
+Listening on ws://localhost:8765
+
+Load the Chrome extension:
+
+Open Chrome → type chrome://extensions → Enter
+
+Top-right: turn on Developer mode
+
+Click Load unpacked
+
+Select the folder: ws-dom-controller/extension
+
+You’ll see “WS DOM Controller” appear. That’s it.
+
+Watch them talk:
+
+The extension auto-connects to the server.
+
+In the server terminal you’ll see the extension say hello.
+
+The server sends a short demo: opens https://example.org, checks <h1>, gets HTML, prints page title.
+
+Try your own commands:
+
+In the server terminal, type a single-line JSON and press Enter:
+
+Open Google:
+
+{"cmd":"nav","url":"https://google.com"}
+
+
+Type into Google’s search box and press Enter:
+
+{"cmd":"type","selector":"textarea[name='q'],input[name='q']","text":"federated learning","enter":true,"timeout_ms":5000}}
+
+
+Click the first result link:
+
+{"cmd":"click","selector":"a h3","index":0,"timeout_ms":3000}
+
+
+Check if a footer exists:
+
+{"cmd":"exists","selector":"footer"}
+
+
+Get the whole page’s HTML (will truncate if gigantic):
+
+{"cmd":"get_html"}
+
+
+Run JavaScript and get the value:
+
+{"cmd":"exec_js","js":"document.title"}
+
+
+If you see an error about not finding an element, the selector might not match that page. Try exists first to confirm.
